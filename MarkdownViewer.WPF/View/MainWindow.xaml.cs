@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using MarkdownViewer.WPF.ViewModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,20 +19,8 @@ namespace MarkdownViewer.WPF.View
     {
         public MainWindow()
         {
+            DataContext = new MainWindowViewModel();
             InitializeComponent();
         }
-
-
-        public string MarkdownText
-        {
-            get { return (string)GetValue(MarkdownTextProperty); }
-            set { SetValue(MarkdownTextProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MarkdownText+.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MarkdownTextProperty =
-            DependencyProperty.Register(nameof(MarkdownText), typeof(string), typeof(MainWindow), new PropertyMetadata(""));
-
-
     }
 }

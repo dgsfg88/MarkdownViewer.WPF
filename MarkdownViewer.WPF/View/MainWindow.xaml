@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:mdxam="clr-namespace:MdXaml;assembly=MdXaml"
         xmlns:local="clr-namespace:MarkdownViewer.WPF.View"
-        mc:Ignorable="d" x:Name="w"
+		xmlns:viewModel="clr-namespace:MarkdownViewer.WPF.ViewModel"
+		d:DataContext="{d:DesignInstance Type=viewModel:MainWindowViewModel, IsDesignTimeCreatable=False}" 
+        mc:Ignorable="d"
         Title="Markdown Viewer" Height="450" Width="800">
     <Grid>
 		<Grid.RowDefinitions>
@@ -13,7 +15,7 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<UniformGrid Rows="1">
-			<Button>
+			<Button Command="{Binding OpenFileCommand}">
 				<Viewbox MaxHeight="1cm">
 					<TextBlock Text="Open"/>
 				</Viewbox>
@@ -21,6 +23,6 @@
 		</UniformGrid>
 		<mdxam:MarkdownScrollViewer xml:space="preserve" VerticalScrollBarVisibility="Auto"
 									Grid.Row="1"
-									Markdown="{Binding ElementName=w, Path=MarkdownText, Mode=OneWay}"/>
+									Markdown="{Binding Path=MarkdownText, Mode=OneWay}"/>
     </Grid>
 </Window>

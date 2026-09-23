@@ -13,8 +13,4 @@
     <PackageReference Include="MdXaml" Version="1.27.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
-
 </Project>
