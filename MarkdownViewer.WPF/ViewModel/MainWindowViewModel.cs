@@ -22,6 +22,9 @@ namespace MarkdownViewer.WPF.ViewModel
 		[ObservableProperty]
 		private bool isLoadingAFile = false;
 
+		[ObservableProperty]
+		private bool showText = false;
+
 		[RelayCommand(CanExecute = nameof(CanOpenFile))]
 		private async Task OpenFile()
 		{

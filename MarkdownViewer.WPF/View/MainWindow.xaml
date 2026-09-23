@@ -6,23 +6,43 @@
 		xmlns:mdxam="clr-namespace:MdXaml;assembly=MdXaml"
         xmlns:local="clr-namespace:MarkdownViewer.WPF.View"
 		xmlns:viewModel="clr-namespace:MarkdownViewer.WPF.ViewModel"
+		xmlns:conv="clr-namespace:MarkdownViewer.WPF.Converter"
 		d:DataContext="{d:DesignInstance Type=viewModel:MainWindowViewModel, IsDesignTimeCreatable=False}" 
         mc:Ignorable="d"
         Title="Markdown Viewer" Height="450" Width="800">
+	<Window.Resources>
+		<conv:BooleanToVisibilityConverter x:Key="boolToVis"/>
+		<conv:BooleanToVisibilityConverter InvertSource="True" x:Key="boolToVisInv"/>
+	</Window.Resources>
     <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<UniformGrid Rows="1">
+		<UniformGrid Rows="1" MaxHeight="1cm">
 			<Button Command="{Binding OpenFileCommand}">
-				<Viewbox MaxHeight="1cm">
+				<Viewbox>
 					<TextBlock Text="Open"/>
 				</Viewbox>
 			</Button>
+			<ToggleButton IsChecked="{Binding ShowText, Mode=TwoWay}">
+				<Viewbox>
+					<Grid>
+						<TextBlock Text="Show/Edit Text"
+								   Visibility="{Binding ShowText, Converter={StaticResource boolToVisInv}}"/>
+						<TextBlock Text="Show Markdown"
+								   Visibility="{Binding ShowText, Converter={StaticResource boolToVis}}"/>
+					</Grid>
+				</Viewbox>
+			</ToggleButton>
 		</UniformGrid>
+		<TextBox VerticalScrollBarVisibility="Auto" Grid.Row="1" IsReadOnly="False"
+				 AcceptsReturn="True" AcceptsTab="True"
+				 Visibility="{Binding ShowText, Converter={StaticResource boolToVis}}"
+				 Text="{Binding MarkdownText, Mode=TwoWay}"/>
 		<mdxam:MarkdownScrollViewer xml:space="preserve" VerticalScrollBarVisibility="Auto"
 									Grid.Row="1"
+									Visibility="{Binding ShowText, Converter={StaticResource boolToVisInv}}"
 									Markdown="{Binding Path=MarkdownText, Mode=OneWay}"/>
     </Grid>
 </Window>
