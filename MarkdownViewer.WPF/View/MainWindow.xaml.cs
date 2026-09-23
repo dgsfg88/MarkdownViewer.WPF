@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MarkdownViewer.WPF
+namespace MarkdownViewer.WPF.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
