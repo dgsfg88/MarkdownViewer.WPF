@@ -35,6 +35,16 @@
 					</Grid>
 				</Viewbox>
 			</ToggleButton>
+			<Button Command="{Binding SaveCommand}">
+				<Viewbox>
+					<TextBlock Text="Save"/>
+				</Viewbox>
+			</Button>
+			<Button Command="{Binding SaveAsCommand}">
+				<Viewbox>
+					<TextBlock Text="Save as"/>
+				</Viewbox>
+			</Button>
 		</UniformGrid>
 		<TextBox VerticalScrollBarVisibility="Auto" Grid.Row="1" IsReadOnly="False"
 				 AcceptsReturn="True" AcceptsTab="True"
